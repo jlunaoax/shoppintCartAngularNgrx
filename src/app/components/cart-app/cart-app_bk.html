@@ -1,0 +1,25 @@
+<app-navbar [items]="items" (toggleCart)="openCart()"></app-navbar>
+<div class="container my-4">
+    <h2>Shopping Cart</h2>
+
+    @if (products.length === 0) {
+        <div class="alert-warning">No products in the cart.</div>
+    } @else {
+        <div class="row">
+            <div [className]="showCart? 'col-9': 'col'">
+                <app-catalog [products]="products" (addToCartEmmitter)="addToCart($event)"></app-catalog>
+            </div>
+            @if (showCart) {
+                <div class="col-3">
+                    @if (items.length > 0) {
+                        <app-cart [items]="items" (deletedProduct)="removeFromCart($event)" (closedCartEmitter)="openCart()"></app-cart>
+                    } @else {
+                        <div class="alert alert-warning">No items in the cart.</div>
+                    }
+                </div>
+            }
+        </div>
+        
+    }
+
+</div>

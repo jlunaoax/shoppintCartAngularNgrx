@@ -1,0 +1,15 @@
+<app-navbar [items]="items" (toggleCart)="openCart()"></app-navbar>
+<div class="container my-4">
+    <h2>Shopping Cart</h2>
+
+    @if (products.length === 0) {
+        <div class="alert-warning">No products in the cart.</div>
+    } @else {
+        <app-catalog [products]="products" (addToCartEmmitter)="addToCart($event)"></app-catalog>
+        @if (showCart) {
+            <app-cart-modal [items]="items" (removedProductEmitter)="removeFromCart($event)" (closedCartEmitter)="openCart()"></app-cart-modal>
+        }
+        
+    }
+
+</div>

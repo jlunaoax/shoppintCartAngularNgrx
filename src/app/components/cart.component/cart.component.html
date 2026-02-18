@@ -1,0 +1,33 @@
+<div>
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (item of items; track $index) {
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.price | currency }}</td>
+                    <td>{{ (item.product.price * item.quantity) | currency }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" (click)="removeFromCart(item.product)">Remove</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-start fw-bold"><strong>Total</strong></td>
+                <td colspan="2"><strong>{{ total | currency }}</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+    <button class="btn btn-secondary float-end" (click)="hideCart()">Hide Cart</button>
+</div>
